@@ -8,35 +8,69 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
   <style>
-    :root {
-      --bg: #0f0f11;
-      --surface: #18181c;
-      --surface2: #222228;
-      --border: #2e2e38;
-      --accent: #e8ff47;
-      --accent2: #47c8ff;
-      --danger: #ff4757;
-      --text: #e8e8f0;
-      --text-muted: #7a7a8e;
-      --mono: 'IBM Plex Mono', monospace;
-      --sans: 'IBM Plex Sans', sans-serif;
-    }
+<style>
+  :root {
+    --bg: #0f0f11;
+    --surface: #18181c;
+    --surface2: #222228;
+    --border: #2e2e38;
+    --accent: #e8ff47;
+    --accent2: #47c8ff;
+    --danger: #ff4757;
+    --text: #e8e8f0;
+    --text-muted: #7a7a8e;
+    --mono: 'IBM Plex Mono', monospace;
+    --sans: 'IBM Plex Sans', sans-serif;
+  }
 
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-    body {
-      font-family: var(--sans);
-      background: var(--bg);
-      color: var(--text);
-      min-height: 100vh;
-      display: grid;
-      place-items: center;
-      padding: 40px 16px;
-      background-image:
-        linear-gradient(rgba(232,255,71,0.03) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(232,255,71,0.03) 1px, transparent 1px);
-      background-size: 40px 40px;
-    }
+  body {
+    font-family: var(--sans);
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    display: grid;
+    place-items: center;
+    padding: 40px 16px;
+    background-image:
+      linear-gradient(rgba(232,255,71,0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(232,255,71,0.03) 1px, transparent 1px);
+    background-size: 40px 40px;
+  }
+
+  /* ✅ Navbar styling */
+  nav {
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    padding: 0 32px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 56px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    width: 100%;
+    margin-bottom: 40px;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 28px;
+    list-style: none;
+  }
+
+  .nav-links a {
+    font-size: 13px;
+    color: var(--text-muted);
+    text-decoration: none;
+    transition: color 120ms ease;
+  }
+
+  .nav-links a:hover { color: var(--text); }
+  .nav-links a.active { color: var(--accent); }
+
 
     .card {
       width: 100%;
