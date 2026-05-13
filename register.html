@@ -7,6 +7,7 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/htmx/1.9.10/htmx.min.js"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+
   <style>
     :root {
       --bg: #0f0f11;
@@ -37,6 +38,38 @@
         linear-gradient(90deg, rgba(232,255,71,0.03) 1px, transparent 1px);
       background-size: 40px 40px;
     }
+
+    /* NAVBAR FIXED + INCLUDED */
+    nav {
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+      padding: 0 32px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 56px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      width: 100%;
+      margin-bottom: 40px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 28px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-size: 13px;
+      color: var(--text-muted);
+      text-decoration: none;
+      transition: color 120ms ease;
+    }
+
+    .nav-links a:hover { color: var(--text); }
+    .nav-links a.active { color: var(--accent); }
 
     .card {
       width: 100%;
@@ -81,9 +114,7 @@
       line-height: 1.5;
     }
 
-    .field {
-      margin-bottom: 20px;
-    }
+    .field { margin-bottom: 20px; }
 
     label {
       display: block;
@@ -112,9 +143,7 @@
     input:focus, select:focus { border-color: var(--accent2); }
     input::placeholder { color: #3a3a4e; }
 
-    .select-wrap {
-      position: relative;
-    }
+    .select-wrap { position: relative; }
 
     .select-wrap::after {
       content: '▾';
@@ -127,17 +156,13 @@
       font-size: 12px;
     }
 
-    select option { background: var(--surface2); }
-
     .role-group {
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 10px;
     }
 
-    .role-option {
-      position: relative;
-    }
+    .role-option { position: relative; }
 
     .role-option input[type="radio"] {
       position: absolute;
@@ -158,32 +183,9 @@
       border-radius: 2px;
     }
 
-    .role-option label .role-title {
-      display: block;
-      font-family: var(--mono);
-      font-size: 12px;
-      font-weight: 500;
-      color: var(--text);
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      margin-bottom: 4px;
-    }
-
-    .role-option label .role-desc {
-      display: block;
-      font-family: var(--sans);
-      font-size: 11px;
-      color: var(--text-muted);
-      font-weight: 300;
-    }
-
     .role-option input[type="radio"]:checked + label {
       border-color: var(--accent2);
       background: rgba(71,200,255,0.06);
-    }
-
-    .role-option label:hover {
-      border-color: rgba(71,200,255,0.4);
     }
 
     .btn {
@@ -205,22 +207,6 @@
 
     .btn:hover { opacity: 0.88; }
     .btn:active { transform: translateY(1px); }
-    .btn.htmx-request { opacity: 0.5; cursor: not-allowed; }
-
-    #register-error {
-      margin-top: 16px;
-      min-height: 0;
-    }
-
-    .error-msg {
-      background: rgba(255,71,87,0.08);
-      border: 1px solid rgba(255,71,87,0.3);
-      color: var(--danger);
-      font-family: var(--mono);
-      font-size: 12px;
-      padding: 10px 14px;
-      border-radius: 2px;
-    }
 
     .footer-link {
       margin-top: 28px;
@@ -230,7 +216,7 @@
     }
 
     .footer-link a {
-      color: var(--accent);
+      color: var(--accent2);
       text-decoration: none;
       font-weight: 500;
     }
@@ -243,37 +229,10 @@
       margin: 28px 0;
     }
   </style>
-  nav {
-  background: var(--surface);
-  border-bottom: 1px solid var(--border);
-  padding: 0 32px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  height: 56px;
-  position: sticky;
-  top: 0;
-  z-index: 100;
-}
-
-.nav-links {
-  display: flex;
-  gap: 28px;
-  list-style: none;
-}
-
-.nav-links a {
-  font-size: 13px;
-  color: var(--text-muted);
-  text-decoration: none;
-  transition: color 120ms ease;
-}
-
-.nav-links a:hover { color: var(--text); }
-.nav-links a.active { color: var(--accent); }
-
 </head>
+
 <body>
+
 <nav>
   <div class="wordmark"><span>//</span> TeamPortal</div>
   <ul class="nav-links">
@@ -284,95 +243,69 @@
   </ul>
 </nav>
 
-  
-  <div class="card">
-    <div class="wordmark"><span>//</span> TeamPortal</div>
-    <h1>Request access</h1>
-    <p class="subtitle">Fill out the form below. An admin will review and approve your account.</p>
+<div class="card">
+  <div class="wordmark"><span>//</span> TeamPortal</div>
+  <h1>Request access</h1>
+  <p class="subtitle">Fill out the form below. An admin will review and approve your account.</p>
 
-    <form
-      hx-post="/register"
-      hx-target="#register-error"
-      hx-swap="innerHTML"
-    >
-      <div class="field">
-        <label for="full_name">Full name</label>
-        <input
-          type="text"
-          id="full_name"
-          name="full_name"
-          placeholder="Jane Smith"
-          autocomplete="name"
-          required
-        >
-      </div>
+  <form
+    hx-post="/register"
+    hx-target="#register-error"
+    hx-swap="innerHTML"
+  >
+    <div class="field">
+      <label for="full_name">Full name</label>
+      <input type="text" id="full_name" name="full_name" placeholder="Jane Smith" required>
+    </div>
 
-      <div class="field">
-        <label for="username">Username</label>
-        <input
-          type="text"
-          id="username"
-          name="username"
-          placeholder="jane.smith"
-          autocomplete="username"
-          required
-        >
-      </div>
+    <div class="field">
+      <label for="username">Username</label>
+      <input type="text" id="username" name="username" placeholder="jane.smith" required>
+    </div>
 
-      <div class="field">
-        <label for="email">Email address</label>
-        <input
-          type="email"
-          id="email"
-          name="email"
-          placeholder="jane@company.com"
-          autocomplete="email"
-          required
-        >
-      </div>
+    <div class="field">
+      <label for="email">Email address</label>
+      <input type="email" id="email" name="email" placeholder="jane@company.com" required>
+    </div>
 
-      <div class="field">
-        <label for="password">Password</label>
-        <input
-          type="password"
-          id="password"
-          name="password"
-          placeholder="Choose a strong password"
-          autocomplete="new-password"
-          required
-        >
-      </div>
+    <div class="field">
+      <label for="password">Password</label>
+      <input type="password" id="password" name="password" placeholder="Choose a strong password" required>
+    </div>
 
-      <div class="divider"></div>
+    <div class="divider"></div>
 
-      <div class="field">
-        <label>Requested role</label>
-        <div class="role-group">
-          <div class="role-option">
-            <input type="radio" id="role_team1" name="requested_role" value="team1" required>
-            <label for="role_team1">
-              <span class="role-title">Team 1</span>
-              <span class="role-desc">Primary operations team</span>
-            </label>
-          </div>
-          <div class="role-option">
-            <input type="radio" id="role_team2" name="requested_role" value="team2">
-            <label for="role_team2">
-              <span class="role-title">Team 2</span>
-              <span class="role-desc">Secondary operations team</span>
-            </label>
-          </div>
+    <div class="field">
+      <label>Requested role</label>
+      <div class="role-group">
+        <div class="role-option">
+          <input type="radio" id="role_team1" name="requested_role" value="team1" required>
+          <label for="role_team1">
+            <span class="role-title">Team 1</span>
+            <span class="role-desc">Primary operations team</span>
+          </label>
+        </div>
+
+        <div class="role-option">
+          <input type="radio" id="role_team2" name="requested_role" value="team2">
+          <label for="role_team2">
+            <span class="role-title">Team 2</span>
+            <span class="role-desc">Secondary operations team</span>
+          </label>
         </div>
       </div>
-
-      <button type="submit" class="btn">Submit request</button>
-    </form>
-
-    <div id="register-error"></div>
-
-    <div class="footer-link">
-      Already have an account? <a href="/login">Sign in</a>
     </div>
+
+    <button type="submit" class="btn">Submit request</button>
+  </form>
+
+  <div id="register-error"></div>
+
+  <div class="footer-link">
+    Already have an account? <a href="login.html">Sign in</a>
   </div>
+</div>
+
 </body>
 </html>
+
