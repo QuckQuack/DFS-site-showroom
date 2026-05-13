@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About — TeamPortal</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0f0f11;
+      --surface: #18181c;
+      --border: #2e2e38;
+      --accent: #e8ff47;
+      --accent2: #47c8ff;
+      --text: #e8e8f0;
+      --text-muted: #7a7a8e;
+      --mono: 'IBM Plex Mono', monospace;
+      --sans: 'IBM Plex Sans', sans-serif;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: var(--sans);
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+    }
+
+    nav {
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+      padding: 0 32px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 56px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .wordmark {
+      font-family: var(--mono);
+      font-size: 12px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+
+    .wordmark span { color: var(--accent); }
+
+    .nav-links {
+      display: flex;
+      gap: 28px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-size: 13px;
+      color: var(--text-muted);
+      text-decoration: none;
+      transition: color 120ms ease;
+    }
+
+    .nav-links a:hover { color: var(--text); }
+    .nav-links a.active { color: var(--accent); }
+
+    .content {
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 80px 32px 120px;
+    }
+
+    .eyebrow {
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 20px;
+    }
+
+    h1 {
+      font-size: 40px;
+      font-weight: 600;
+      letter-spacing: -0.025em;
+      line-height: 1.15;
+      margin-bottom: 36px;
+    }
+
+    .body-text p {
+      font-size: 16px;
+      line-height: 1.75;
+      color: var(--text-muted);
+      font-weight: 300;
+      margin-bottom: 20px;
+    }
+
+    .body-text p strong {
+      color: var(--text);
+      font-weight: 500;
+    }
+
+    .divider {
+      height: 1px;
+      background: var(--border);
+      margin: 48px 0;
+    }
+
+    .values {
+      display: grid;
+      gap: 24px;
+    }
+
+    .value-item {
+      display: grid;
+      grid-template-columns: 28px 1fr;
+      gap: 16px;
+      align-items: start;
+    }
+
+    .value-num {
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--accent);
+      padding-top: 2px;
+    }
+
+    .value-item h3 {
+      font-size: 15px;
+      font-weight: 600;
+      margin-bottom: 6px;
+    }
+
+    .value-item p {
+      font-size: 13px;
+      color: var(--text-muted);
+      line-height: 1.6;
+      font-weight: 300;
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <div class="wordmark"><span>//</span> TeamPortal</div>
+    <ul class="nav-links">
+      <li><a href="/">Home</a></li>
+      <li><a href="/about" class="active">About</a></li>
+      <li><a href="/contact">Contact</a></li>
+      <li><a href="/login">Sign in</a></li>
+    </ul>
+  </nav>
+
+  <div class="content">
+    <div class="eyebrow">About</div>
+    <h1>Built for teams that move fast.</h1>
+
+    <div class="body-text">
+      <p>
+        <strong>TeamPortal</strong> is an internal operations platform designed to keep two distinct teams organized,
+        informed, and working efficiently — under one roof.
+      </p>
+      <p>
+        Access is role-based and tightly controlled. Every account goes through admin review before
+        gaining entry. Once approved, users see only the tools and information relevant to their team.
+      </p>
+      <p>
+        The platform is intentionally lean — no bloat, no unnecessary features. Just the things
+        your teams actually need to get work done.
+      </p>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="values">
+      <div class="value-item">
+        <span class="value-num">01</span>
+        <div>
+          <h3>Security first</h3>
+          <p>All access is gated and role-scoped. Nothing is visible until an admin explicitly grants it.</p>
+        </div>
+      </div>
+      <div class="value-item">
+        <span class="value-num">02</span>
+        <div>
+          <h3>Minimal footprint</h3>
+          <p>We ship only what's needed. Every feature earns its place. No cruft, no dead weight.</p>
+        </div>
+      </div>
+      <div class="value-item">
+        <span class="value-num">03</span>
+        <div>
+          <h3>Clear ownership</h3>
+          <p>Roles define responsibility. Team 1 and Team 2 operate clearly within their lanes.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>

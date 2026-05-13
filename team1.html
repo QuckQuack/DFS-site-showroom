@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Team 1 — TeamPortal</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0f0f11;
+      --surface: #18181c;
+      --surface2: #222228;
+      --border: #2e2e38;
+      --accent: #47c8ff;
+      --accent-glow: rgba(71,200,255,0.12);
+      --text: #e8e8f0;
+      --text-muted: #7a7a8e;
+      --mono: 'IBM Plex Mono', monospace;
+      --sans: 'IBM Plex Sans', sans-serif;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: var(--sans);
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+    }
+
+    nav {
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+      padding: 0 32px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 56px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .wordmark {
+      font-family: var(--mono);
+      font-size: 12px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+
+    .wordmark span { color: var(--accent); }
+
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .nav-user {
+      font-family: var(--mono);
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+
+    .nav-badge {
+      background: var(--accent-glow);
+      color: var(--accent);
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 3px 8px;
+      border: 1px solid rgba(71,200,255,0.3);
+      border-radius: 2px;
+    }
+
+    .nav-logout {
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--text-muted);
+      text-decoration: none;
+    }
+
+    .nav-logout:hover { color: #ff4757; }
+
+    main {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 56px 32px 80px;
+    }
+
+    /* ── Welcome banner ── */
+    .welcome {
+      border: 1px solid var(--border);
+      border-left: 3px solid var(--accent);
+      background: var(--surface);
+      padding: 32px 36px;
+      margin-bottom: 48px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .welcome::before {
+      content: '';
+      position: absolute;
+      top: 0; right: 0;
+      width: 200px;
+      height: 100%;
+      background: radial-gradient(ellipse at right, var(--accent-glow), transparent 70%);
+      pointer-events: none;
+    }
+
+    .welcome .tag {
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 12px;
+      display: block;
+    }
+
+    .welcome h1 {
+      font-size: 28px;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      margin-bottom: 8px;
+    }
+
+    .welcome p {
+      font-size: 14px;
+      color: var(--text-muted);
+      font-weight: 300;
+    }
+
+    /* ── User info card ── */
+    .info-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+      margin-bottom: 48px;
+    }
+
+    .info-cell {
+      background: var(--surface);
+      padding: 24px 28px;
+    }
+
+    .info-cell .label {
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 8px;
+      display: block;
+    }
+
+    .info-cell .val {
+      font-size: 15px;
+      font-weight: 500;
+      color: var(--text);
+    }
+
+    .info-cell .val.mono {
+      font-family: var(--mono);
+      font-size: 13px;
+    }
+
+    .info-cell .val.role {
+      color: var(--accent);
+      font-family: var(--mono);
+      font-size: 12px;
+    }
+
+    /* ── Content area ── */
+    .section-header {
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 20px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .placeholder-block {
+      background: var(--surface);
+      border: 1px dashed var(--border);
+      padding: 48px 32px;
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 13px;
+      line-height: 1.6;
+      font-weight: 300;
+    }
+
+    .placeholder-block strong {
+      display: block;
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 8px;
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <div class="wordmark"><span>//</span> TeamPortal</div>
+    <div class="nav-right">
+      <span class="nav-user">{{ user.username }}</span>
+      <span class="nav-badge">{{ user.role }}</span>
+      <a href="/logout" class="nav-logout">Sign out</a>
+    </div>
+  </nav>
+
+  <main>
+    <!-- Welcome banner -->
+    <div class="welcome">
+      <span class="tag">Team 1 workspace</span>
+      <h1>Welcome back, {{ user.full_name }}.</h1>
+      <p>You're signed in with <strong>{{ user.role }}</strong> access. This area is visible to Team 1 and admins only.</p>
+    </div>
+
+    <!-- User info -->
+    <div class="info-grid">
+      <div class="info-cell">
+        <span class="label">Name</span>
+        <span class="val">{{ user.full_name }}</span>
+      </div>
+      <div class="info-cell">
+        <span class="label">Username</span>
+        <span class="val mono">{{ user.username }}</span>
+      </div>
+      <div class="info-cell">
+        <span class="label">Email</span>
+        <span class="val mono">{{ user.email }}</span>
+      </div>
+      <div class="info-cell">
+        <span class="label">Role</span>
+        <span class="val role">{{ user.role }}</span>
+      </div>
+    </div>
+
+    <!-- Content slot -->
+    <div class="section-header">Team 1 content</div>
+    <div class="placeholder-block">
+      <strong>Team 1 only</strong>
+      Your team's content and tools will appear here.
+    </div>
+  </main>
+
+</body>
+</html>
